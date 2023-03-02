@@ -88,7 +88,14 @@ Note: While Trello and Jira both offer top-notch task management tools, they eac
 * Create a directory and name it playbooks – it will be used to store all your playbook files.
 * Create a directory and name it inventory – it will be used to keep your hosts organised.
 * Within the playbooks folder, create your first playbook, and name it common.yml
-* Within the inventory folder, create an inventory file (.yml) for each environment development, staging, test, and production respectively.
+* Within the inventory folder, create an inventory file (.yml) for each environment  (Development, Staging Testing and Production) dev, stage, test, and prod respectively.
 
 ![yaml](./images/yaml.png)
+
+### STEP 4 - SET UP AN ANSIBLE INVENTORY
+An Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate. Since our intention is to execute Linux commands on remote hosts, and ensure that it is the intended configuration on a particular server that occurs. It is important to have a way to organize our hosts in such an Inventory.
+Save below inventory structure in the inventory/dev file to start configuring your development servers. Ensure to replace the IP addresses according to your own setup.
+Note: Ansible uses TCP port 22 by default, which means it needs to ssh into target servers from Jenkins-Ansible host – for this you can implement the concept of [ssh-agent](https://smallstep.com/blog/ssh-agent-explained/#:~:text=ssh%2Dagent%20is%20a%20key,you%20connect%20to%20a%20server.&text=It%20doesn't%20allow%20your%20private%20keys%20to%20be%20exported.). Now you need to import your key into ssh-agent:
+
+![eval](./images/eval.png)
 
