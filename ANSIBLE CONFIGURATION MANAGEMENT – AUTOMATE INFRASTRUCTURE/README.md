@@ -72,4 +72,19 @@ Note: Trigger Jenkins project execution only for /main (master) branch.
 ![elastic ip](./images/elastic-ip.png)
 
 ### Step 2 – Prepare your development environment using Visual Studio Code
-First part of ‘DevOps’ is ‘Dev’, which means you will require to write some codes and you shall have proper tools that will make your coding and debugging comfortable – you need an Integrated development environment (IDE) or Source-code Editor.
+First part of ‘DevOps’ is ‘Dev’, which means you will require to write some codes and you shall have proper tools that will make your coding and debugging comfortable – you need an Integrated development environment (IDE) or Source-code Editor. There is a plethora of different IDEs and Source-code Editors for different languages with their own advantages and drawbacks, you can choose whichever you are comfortable with, but we recommend one free and universal editor that will fully satisfy your needs – Visual Studio Code (VSC).
+
+* Clone down your ansible-config-mgt repo to your Jenkins-Ansible instance
+    
+      git clone <ansible-config-mgt repo link>
+
+
+### STEP 3 -BEGIN ANSIBLE DEVELOPMENT
+* In your ansible-config-mgt GitHub repository, create a new branch that will be used for development of a new feature.
+Tip: Give your branches descriptive and comprehensive names, for example, if you use Jira or Trello as a project management tool – include ticket number (e.g. PRJ-145) in the
+ name of your branch and add a topic and a brief description what this branch is about – a bugfix, hotfix, feature, release (e.g. feature/prj-145-lvm)
+* Checkout the newly created feature branch to your local machine and start building your code and directory structure
+Create a directory and name it playbooks – it will be used to store all your playbook files.
+Create a directory and name it inventory – it will be used to keep your hosts organised.
+Within the playbooks folder, create your first playbook, and name it common.yml
+Within the inventory folder, create an inventory file (.yml) for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively.
