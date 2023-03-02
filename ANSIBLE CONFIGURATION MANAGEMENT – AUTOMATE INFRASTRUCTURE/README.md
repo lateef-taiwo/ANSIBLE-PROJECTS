@@ -64,4 +64,4 @@ Note: Trigger Jenkins project execution only for /main (master) branch.
 ![elastic ip](./images/elastic-ip.png)
 
 ### Step 2 – Prepare your development environment using Visual Studio Code
-
+First part of ‘DevOps’ is ‘Dev’, which means you will require to write some codes and you shall have proper tools that will make your coding and debugging comfortable – you need an Integrated development environment (IDE) or Source-code Editor.
