@@ -90,3 +90,5 @@ Note: While Trello and Jira both offer top-notch task management tools, they eac
 * Within the playbooks folder, create your first playbook, and name it common.yml
 * Within the inventory folder, create an inventory file (.yml) for each environment development, staging, test, and production respectively.
 
+![yaml](./images/yaml.png)
+
