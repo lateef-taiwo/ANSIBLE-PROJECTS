@@ -85,7 +85,8 @@ Tip: Give your branches descriptive and comprehensive names, for example, if you
 Note: While Trello and Jira both offer top-notch task management tools, they each have different strengths. The biggest difference between the two is that Trello offers just Kanban boards while Jira offers Kanban, Scrum and sprint boards. Scrum and Kanban boards are both used to visually track a project's tasks. They are both Agile frameworks.
 
 * Checkout the newly created feature branch to your local machine and start building your code and directory structure
-Create a directory and name it playbooks – it will be used to store all your playbook files.
-Create a directory and name it inventory – it will be used to keep your hosts organised.
-Within the playbooks folder, create your first playbook, and name it common.yml
-Within the inventory folder, create an inventory file (.yml) for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively.
+* Create a directory and name it playbooks – it will be used to store all your playbook files.
+* Create a directory and name it inventory – it will be used to keep your hosts organised.
+* Within the playbooks folder, create your first playbook, and name it common.yml
+* Within the inventory folder, create an inventory file (.yml) for each environment development, staging, test, and production respectively.
+
