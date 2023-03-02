@@ -81,8 +81,9 @@ First part of ‘DevOps’ is ‘Dev’, which means you will require to write s
 
 ### STEP 3 -BEGIN ANSIBLE DEVELOPMENT
 * In your ansible-config-mgt GitHub repository, create a new branch that will be used for development of a new feature.
-Tip: Give your branches descriptive and comprehensive names, for example, if you use Jira or Trello as a project management tool – include ticket number (e.g. PRJ-145) in the
- name of your branch and add a topic and a brief description what this branch is about – a bugfix, hotfix, feature, release (e.g. feature/prj-145-lvm)
+Tip: Give your branches descriptive and comprehensive names, for example, if you use [Jira](https://www.atlassian.com/software/jira) or [Trello](https://trello.com/) as a project management tool – include ticket number (e.g. PRJ-145) in the name of your branch and add a topic and a brief description what this branch is about – a bugfix, hotfix, feature, release (e.g. feature/prj-145-lvm).
+Note: While Trello and Jira both offer top-notch task management tools, they each have different strengths. The biggest difference between the two is that Trello offers just Kanban boards while Jira offers Kanban, Scrum and sprint boards. Scrum and Kanban boards are both used to visually track a project's tasks. They are both Agile frameworks.
+
 * Checkout the newly created feature branch to your local machine and start building your code and directory structure
 Create a directory and name it playbooks – it will be used to store all your playbook files.
 Create a directory and name it inventory – it will be used to keep your hosts organised.
