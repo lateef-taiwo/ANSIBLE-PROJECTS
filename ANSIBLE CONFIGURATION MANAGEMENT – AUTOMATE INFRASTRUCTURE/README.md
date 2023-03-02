@@ -117,3 +117,25 @@ Now, ssh into your Jenkins-Ansible server using ssh-agent
      ssh -A ubuntu@public-ip
 ![ssh](./images/ssh-ubuntu.png)
 
+* Also notice, that your Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
+
+![ssh](./images/ssh-ec2-user.png)
+
+
+* Update your inventory/dev.yml file with this snippet of code:
+
+        [nfs]
+        <NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+
+        [webservers]
+        <Web-Server1-Private-IP-Address> ansible_ssh_user='ec2-user'
+        <Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user'
+
+        [db]
+        <Database-Private-IP-Address> ansible_ssh_user='ec2-user' 
+
+        [lb]
+        <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
+
+### Step 5 - CREATE A COMMON PLAYBOOK
+ 
