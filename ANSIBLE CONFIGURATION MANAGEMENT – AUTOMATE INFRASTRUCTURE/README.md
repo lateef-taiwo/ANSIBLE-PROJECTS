@@ -10,3 +10,11 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
 
 ![bastion](./images/bastion-host.png)
 
+### INSTALL AND CONFIGURE ANSIBLE ON EC2 INSTANCE
+* Update Name tag on your Jenkins EC2 Instance to Jenkins-Ansible. We will use this server to run playbooks.
+* In your GitHub account create a new repository and name it ansible-config-mgt.
+* Install Ansible on Jenkins-Ansible EC2 instance
+
+        sudo apt update
+
+        sudo apt install ansible
