@@ -39,7 +39,11 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
 * Copy GitHub repo link
 ![git](./images/git-hub-link-copy.png)
 
+* Paste in Repository field under Ansible source code management congiguration.
+![jenkins](./images/jenkins-ansible-config.png)
+
 * Configure Webhook in GitHub and set webhook to trigger ansible build.
+![webhook](./images/webhook.png)
 
 * Configure a Post-build job to save all (**) files, like you did it in Project 9.
 * Test your setup by making some change in README.MD file in master branch and make sure that builds starts automatically and Jenkins saves the files (build artifacts) in following folder.
