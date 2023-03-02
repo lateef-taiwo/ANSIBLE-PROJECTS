@@ -36,5 +36,6 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
 Note: Trigger Jenkins project execution only for /main (master) branch.
 * Now your setup will look like this:
 
+  ![ansible](./images/Architecture-1.png)
 
 
