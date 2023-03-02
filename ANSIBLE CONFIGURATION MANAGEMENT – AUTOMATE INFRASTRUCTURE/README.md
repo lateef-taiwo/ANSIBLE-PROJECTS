@@ -97,5 +97,23 @@ An Ansible inventory file defines the hosts and groups of hosts upon which comma
 Save below inventory structure in the inventory/dev file to start configuring your development servers. Ensure to replace the IP addresses according to your own setup.
 Note: Ansible uses TCP port 22 by default, which means it needs to ssh into target servers from Jenkins-Ansible host – for this you can implement the concept of [ssh-agent](https://smallstep.com/blog/ssh-agent-explained/#:~:text=ssh%2Dagent%20is%20a%20key,you%20connect%20to%20a%20server.&text=It%20doesn't%20allow%20your%20private%20keys%20to%20be%20exported.). Now you need to import your key into ssh-agent:
 
+    eval `ssh-agent -s`
+
 ![eval](./images/eval.png)
+
+    ssh-add <path-to-private-key>
+
+![ssh](./images/ssh-add1.png)
+
+
+* Confirm the key has been added with the command below, you should see the name of your key
+
+      ssh-add -l
+
+    ![ssh](./images/ssh-add.png)
+    
+Now, ssh into your Jenkins-Ansible server using ssh-agent
+     
+     ssh -A ubuntu@public-ip
+![ssh](./images/ssh-ubuntu.png)
 
