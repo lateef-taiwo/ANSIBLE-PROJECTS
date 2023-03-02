@@ -18,4 +18,9 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
         sudo apt update
 
         sudo apt install ansible
+
+    ![update](./images/apt-update.png)
+    ![ansible](./images/install-ansible.png)
 * After installation, Check your Ansible version by running `ansible --version`
+
+    ![ansible](./images/ansible-version.png)
