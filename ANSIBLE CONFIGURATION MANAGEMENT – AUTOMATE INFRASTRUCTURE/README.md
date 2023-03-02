@@ -50,9 +50,17 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
     ![image](./images/webhook-postbuild.png)
 
     ![postbuild](./images/postbuild.png)
-* Test your setup by making some change in README.MD file in master branch and make sure that builds starts automatically and Jenkins saves the files (build artifacts) in following folder.
+* Test your setup by making some change in README.MD file in master branch
 
-`ls /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/`
+![readme](./images/Readme%20edit.png)
+
+![build](./images/build%20successful.png)
+![build](./images/build%20successful2.png)
+
+* Ensure that builds starts automatically and Jenkins saves the files (build artifacts) in following folder.
+`ls /var/lib/jenkins/jobs/Ansible/builds/<build_number>/archive/`
+
+![build](./images/builds-in-cli.png)
 
 Note: Trigger Jenkins project execution only for /main (master) branch.
 * Now your setup will look like this:
