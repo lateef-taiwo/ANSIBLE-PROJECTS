@@ -12,6 +12,9 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
 
 ### INSTALL AND CONFIGURE ANSIBLE ON EC2 INSTANCE
 * Update Name tag on your Jenkins EC2 Instance to "Jenkins-Ansible server". We will use this server to run playbooks.
+
+![jenkins](./images/jenkins-ansible.png)
+
 * In your GitHub account create a new repository and name it ansible-config-mgt.
 * Install Ansible on Jenkins-Ansible EC2 instance
 
@@ -25,10 +28,19 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
 
     ![ansible](./images/ansible-version.png)
 
-* Configure Jenkins build job to save your repository content every time you change it.
+* Log into your jenkins-ansible GUI and Configure Jenkins build job to save your repository content every time you change it.
+
+![jenkins](./images/jenkins-gui.png)
 
 * Create a new Freestyle project ansible in Jenkins and point it to your ‘ansible-config-mgt’ repository.
+
+![project](./images/ansible-freestyle-project.png)
+
+* Copy GitHub repo link
+![git](./images/git-hub-link-copy.png)
+
 * Configure Webhook in GitHub and set webhook to trigger ansible build.
+
 * Configure a Post-build job to save all (**) files, like you did it in Project 9.
 * Test your setup by making some change in README.MD file in master branch and make sure that builds starts automatically and Jenkins saves the files (build artifacts) in following folder.
 
