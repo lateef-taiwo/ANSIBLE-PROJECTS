@@ -109,7 +109,8 @@ Note: Ansible uses TCP port 22 by default, which means it needs to ssh into targ
 
 * Now, ssh into your Jenkins-Ansible server using ssh-agent
      
-     ssh -A ubuntu@public-ip
+    ssh -A ubuntu@public-ip
+
 ![ssh](./images/ssh-A%201.png)
 
 * Also notice, that your Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
