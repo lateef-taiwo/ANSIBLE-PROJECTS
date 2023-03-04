@@ -135,6 +135,8 @@ Note: Ansible uses TCP port 22 by default, which means it needs to ssh into targ
         [lb]
         <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
 
+    ![dev](./images/dev-yml.png)
+
 ### Step 5 - CREATE A COMMON PLAYBOOK
 It is time to start giving Ansible the instructions on what you needs to be performed on all servers listed in inventory/dev.
 In common.yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
@@ -166,6 +168,8 @@ Update your playbooks/common.yml file with following code:
         apt:
             name: wireshark
             state: latest
+
+ ![common](./images/common-yml.png)
 
 * Examine the code above and try to make sense out of it. This playbook is divided into two parts, each of them is intended to perform the same task: install wireshark utility (or make sure it is updated to the latest version) on your RHEL 8 and Ubuntu servers. It uses root user to perform this task and respective package manager: yum for RHEL 8 and apt for Ubuntu.
 
