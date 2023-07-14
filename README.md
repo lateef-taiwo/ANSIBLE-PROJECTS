@@ -38,4 +38,4 @@ Testing Jenkins CI
 
 Check Jenkins CI
 
-Making changes
+Test Jenkins CI
