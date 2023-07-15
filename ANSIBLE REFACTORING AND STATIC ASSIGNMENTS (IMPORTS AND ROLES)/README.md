@@ -188,3 +188,78 @@ NOTE: TO COPY YOUR KEYPAIR FROM YOUR LOCAL MACHINE INTO YOUR EC2 INSTANCE USE SC
 * then run `scp -i <"Name-of-keypair-used-to-ssh-into-the-instance"> <Name-of-kepair-that-you-want-to-copy> <username@public-IP:><path-to-copy-to/>`
 
 ![scp](./images/scp.png)
+
+4. In /etc/ansible/ansible.cfg file uncomment roles_path string and provide a full path to your roles directory roles_path = /home/ubuntu/ansible-config-mgt/roles, so Ansible could know where to find configured roles.
+
+![ansible](./images/etc-ansible-config.png)
+
+5. It is time to start adding some logic to the webserver role. Go into tasks directory, and within the main.yml file, start writing configuration tasks to do the following:
+
+    * Install and configure Apache (httpd service)
+    * Clone Tooling website from GitHub https://github.com//tooling.git.
+    * Ensure the tooling website code is deployed to /var/www/html on each of 2 UAT Web servers.
+    * Make sure httpd service is started
+
+   Your main.yml may consist of following tasks:
+
+        ---
+        - name: install apache
+        become: true
+        ansible.builtin.yum:
+            name: "httpd"
+            state: present
+
+        - name: install git
+        become: true
+        ansible.builtin.yum:
+            name: "git"
+            state: present
+
+        - name: clone a repo
+        become: true
+        ansible.builtin.git:
+            repo: https://github.com/<your-name>/tooling.git
+            dest: /var/www/html
+            force: yes
+
+        - name: copy html content to one level up
+        become: true
+        command: cp -r /var/www/html/html/ /var/www/
+
+        - name: Start service httpd, if not started
+        become: true
+        ansible.builtin.service:
+            name: httpd
+            state: started
+
+        - name: recursively remove /var/www/html/html/ directory
+        become: true
+        ansible.builtin.file:
+            path: /var/www/html/html
+            state: absent
+
+### Step 4 – Reference ‘Webserver’ role
+1. Within the static-assignments folder, create a new assignment for uat-webservers uat-webservers.yml. This is where you will reference the role.
+
+    ---
+    - hosts: uat-webservers
+    roles:
+        - webserver
+
+Remember that the entry point to our ansible configuration is the site.yml file. Therefore, you need to refer your uat-webservers.yml role inside site.yml.
+
+So, we should have this in site.yml
+
+    ---
+    - hosts: uat-webservers
+    - import_playbook: ../static-assignments/uat-webservers.yml
+
+Step 5 – Commit & Test
+
+Commit your changes, create a Pull Request and merge them to master branch, make sure webhook triggered two consequent Jenkins jobs, they ran successfully and copied all the files to your Jenkins-Ansible server into /home/ubuntu/ansible-config-artifact/ directory.
+
+Now run the playbook against your uat inventory and see what happens:
+
+`cd ansible-config-artifact/`
+
+ `sudo ansible-playbook -i inventory/uat.yml playbooks/site.yml`
