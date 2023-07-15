@@ -2,11 +2,8 @@
 172.31.3.12 ansible_ssh_user='ec2-user'
 
 [webservers]
-<<<<<<< Updated upstream
 172.31.2.55 ansible_ssh_user='ec2-user'
-=======
-172.31.2.5 ansible_ssh_user='ec2-user'
->>>>>>> Stashed changes
+
 172.31.11.113 ansible_ssh_user='ec2-user'
 
 [db]
