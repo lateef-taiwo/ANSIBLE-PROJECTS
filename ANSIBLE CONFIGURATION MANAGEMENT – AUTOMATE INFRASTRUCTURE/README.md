@@ -142,3 +142,4 @@ It is time to start giving Ansible the instructions on what you needs to be perf
 In common.yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
 Update your playbooks/common.yml file with following code:
  
+ git changes
