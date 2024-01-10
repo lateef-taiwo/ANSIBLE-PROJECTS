@@ -6,7 +6,7 @@ According to [Red Hat](https://www.redhat.com/en/topics/automation/what-is-confi
 
 Managing IT system configurations involves defining a system's desired state—like server configuration—then building and maintaining those systems. Closely related to configuration assessments and drift analyses, configuration management uses both to identify systems to update, reconfigure, or patch.
 
-### Ansible Playbook
+## Ansible Playbook
 An Ansible® Playbook is a blueprint of automation tasks—which are complex IT actions executed with limited or no human involvement. Ansible Playbooks are executed on a set, group, or classification of hosts, which together make up an Ansible inventory.
 
 Ansible Playbooks are essentially frameworks, which are prewritten code developers can use ad-hoc or as starting template. Ansible Playbooks are regularly used to automate IT infrastructure (such as operating systems and Kubernetes platforms), networks, security systems, and developer personas (such as Git).
@@ -19,6 +19,7 @@ Ansible modules execute tasks. One or more Ansible tasks can be combined to make
 
 Each module within an Ansible Playbook performs a specific task. Each module contains metadata that determines when and where a task is executed, as well as which user executes it. There are thousands of other Ansible modules that perform all kinds of IT tasks, such as:
 * User management
+* Software Configuration
 * Networking
 * Cloud Management
 * Security
