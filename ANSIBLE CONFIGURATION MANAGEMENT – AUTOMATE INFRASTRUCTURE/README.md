@@ -132,7 +132,8 @@ Now, ssh into your Jenkins-Ansible server using ssh-agent
         <Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user'
 
         [db]
-        <Database-Private-IP-Address> ansible_ssh_user='ec2-user' 
+        <Database-Private-IP-Address> ansible_ssh_user='ec2-user'
+
 
         [lb]
         <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
