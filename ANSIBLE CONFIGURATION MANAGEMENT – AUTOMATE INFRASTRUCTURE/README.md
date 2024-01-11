@@ -112,7 +112,11 @@ Note: Ansible uses TCP port 22 by default, which means it needs to ssh into targ
 
     ![ssh](./images/ssh-add.png)
     
-Now, ssh into your Jenkins-Ansible server using ssh-agent
+Now, ssh into your Jenkins-Ansible server using ssh-agent.
+
+    ssh -A username@public-ip
+
+You can also ssh into the other servers from the jenkins server using   
      
      ssh -A ubuntu@public-ip
 ![ssh](./images/ssh-ubuntu.png)
