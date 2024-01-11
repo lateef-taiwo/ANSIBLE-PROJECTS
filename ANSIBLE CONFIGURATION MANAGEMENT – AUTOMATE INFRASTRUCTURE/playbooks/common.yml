@@ -25,11 +25,12 @@
   become: yes
   become_user: root
   tasks:
+    - name: Ensure essential packages are installed
+      raw: apt-get update && apt-get install -y python3-apt
+
     - name: Update apt repo
       apt:
         update_cache: yes
-        force_apt_get: yes
-        cache_valid_time: 3600
 
     - name: ensure wireshark is at the latest version
       apt:
