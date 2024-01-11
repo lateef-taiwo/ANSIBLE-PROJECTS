@@ -5,6 +5,10 @@
   become: yes
   become_user: root
   tasks:
+    - name: Ensure all packages are up to date
+      yum:
+        name: '*'
+        state: latest
     - name: ensure wireshark is at the latest version
       yum:
         name: wireshark
