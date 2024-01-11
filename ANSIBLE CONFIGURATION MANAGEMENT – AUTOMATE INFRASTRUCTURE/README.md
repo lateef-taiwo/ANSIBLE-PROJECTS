@@ -144,3 +144,5 @@ In common.yml playbook you will write configuration for repeatable, re-usable, a
 Update your playbooks/common.yml file with following code:
  
  git changes
+
+ build
