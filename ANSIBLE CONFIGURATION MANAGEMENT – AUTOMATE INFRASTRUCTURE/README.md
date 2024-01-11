@@ -8,7 +8,7 @@ Managing IT system configurations involves defining a system's desired state—l
 A Jump Server (sometimes also referred as Bastion Host) is an intermediary server through which access to internal network can be provided. If you think about the current architecture you are working on, ideally, the webservers would be inside a secured network which cannot be reached directly from the Internet. That means, even DevOps engineers cannot SSH into the Web servers directly and can only access it through a Jump Server – it provide better security and reduces attack surface.
 On the diagram below the Virtual Private Network (VPC) is divided into two subnets – Public subnet has public IP addresses and Private subnet is only reachable by private IP addresses.
 
-![bastion](./images/bastion-host.png)
+![bastion](./images/bastion.png)
 
 ### STEP 1 - INSTALL AND CONFIGURE ANSIBLE ON EC2 INSTANCE
 * Update Name tag on your Jenkins EC2 Instance to "Jenkins-Ansible server". We will use this server to run playbooks.
@@ -22,54 +22,44 @@ On the diagram below the Virtual Private Network (VPC) is divided into two subne
 
         sudo apt install ansible
 
-    ![update](./images/apt-update.png)
-    ![ansible](./images/install-ansible.png)
+
 * After installation, Check your Ansible version by running `ansible --version`
 
-    ![ansible](./images/ansible-version.png)
+    ![ansible](./images/ansible%20-version.png)
 
 * Log into your jenkins-ansible GUI and Configure Jenkins build job to save your repository content every time you change it.
 
-![jenkins](./images/jenkins-gui.png)
-
 * Create a new Freestyle project ansible in Jenkins and point it to your ‘ansible-config-mgt’ repository.
 
-![project](./images/ansible-freestyle-project.png)
-
 * Copy GitHub repo link
-![git](./images/git-hub-link-copy.png)
+![git](./images/git-hub%20link.png)
 
 * Paste in Repository field under Ansible source code management congiguration.
-![jenkins](./images/jenkins-ansible-config.png)
 
 * Configure Webhook in GitHub and set webhook to trigger ansible build.
-![webhook](./images/webhook.png)
+![webhook](./images/web-hook.png)
 
 * Configure a Post-build job to save all (**) files.
 
-    ![image](./images/webhook-postbuild.png)
+    ![postbuild](./images/post-build-job.png)
 
-    ![postbuild](./images/postbuild.png)
 * Test your setup by making some change in README.MD file in master branch
 
-![readme](./images/Readme%20edit.png)
-
-![build](./images/build%20successful.png)
-![build](./images/build%20successful2.png)
+![readme](./images/README.png)
 
 * Ensure that builds starts automatically and Jenkins saves the files (build artifacts) in following folder.
 `ls /var/lib/jenkins/jobs/Ansible/builds/<build_number>/archive/`
 
-![build](./images/builds-in-cli.png)
+![build](./images/ls%20var-lib.png)
 
 Note: Trigger Jenkins project execution only for /main (master) branch.
 * Now your setup will look like this:
 
-  ![ansible](./images/Architecture-1.png)
+  ![ansible](./images/new-setup.png)
 
 *  Every time you stop/start your Jenkins-Ansible server – you have to reconfigure GitHub webhook to a new IP address, in order to avoid it, it makes sense to allocate an Elastic IP to your Jenkins-Ansible server. Note that Elastic IP is free only when it is being allocated to an EC2 Instance, so do not forget to release Elastic IP once you terminate your EC2 Instance.
 
-![elastic ip](./images/elastic-ip.png)
+![elastic ip](./images/elastic%20ip.png)
 
 ### Step 2 – Prepare your development environment using Visual Studio Code
 First part of ‘DevOps’ is ‘Dev’, which means you will require to write some codes and you shall have proper tools that will make your coding and debugging comfortable – you need an Integrated development environment (IDE) or Source-code Editor. There is a plethora of different IDEs and Source-code Editors for different languages with their own advantages and drawbacks, you can choose whichever you are comfortable with, but we recommend one free and universal editor that will fully satisfy your needs – Visual Studio Code (VSC).
@@ -99,31 +89,23 @@ Note: Ansible uses TCP port 22 by default, which means it needs to ssh into targ
 
     eval `ssh-agent -s`
 
-![eval](./images/eval.png)
-
     ssh-add <path-to-private-key>
-
-![ssh](./images/ssh-add1.png)
-
 
 * Confirm the key has been added with the command below, you should see the name of your key
 
       ssh-add -l
-
-    ![ssh](./images/ssh-add.png)
-    
+    ![eval](./images/eval%20%20ssh-agent.png)
 Now, ssh into your Jenkins-Ansible server using ssh-agent.
 
-    ssh -A username@public-ip
+         ssh -A ubuntu@public-ip
+ 
+    ![ssh](./images/ssh%20-A.png)
 
-You can also ssh into the other servers from the jenkins server using   
-     
-     ssh -A ubuntu@public-ip
-![ssh](./images/ssh-ubuntu.png)
+You can also ssh into the other servers from the jenkins server using:
+
+     ssh -A username@public-ip
 
 * Also notice, that your Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
-
-![ssh](./images/ssh-ec2-user.png)
 
 
 * Update your inventory/dev.yml file with this snippet of code:
@@ -204,3 +186,41 @@ Commit your code into GitHub: 16. use git commands to add, commit and push your 
     
 * Head back on your terminal, checkout from the feature branch into the master, and pull down the latest changes.
 
+![git-commit](./images/merge.png)
+
+Once your code changes appear in master branch – Jenkins will do its job and save all the files (build artifacts) to `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` directory on Jenkins-Ansible server.
+
+![var](./images/ls%20var-lib.png)
+
+## RUN FIRST ANSIBLE TEST
+
+### Step 7 – Run first Ansible test
+
+Now, it is time to execute ansible-playbook command and verify if your playbook actually works:
+
+`cd /var/lib/jenkins/jobs/ansible/builds/4/archive`
+
+`ansible-playbook -i inventory/dev.yml playbooks/common.yml`
+
+![ansible-playbook](./images/ansible-playbook-successful.png)
+
+You can go to each of the servers and check if wireshark has been installed by running;
+
+  `which wireshark`
+  
+  or 
+
+  `wireshark --version`
+
+![wireshark](./images/wireshark%20--version.png)
+
+![wireshark](./images/wireshark%20--version%202.png)
+
+![wireshark](./images/wireshark%20--version%203.png)
+
+
+Your updated with Ansible architecture now looks like this:
+
+![final](./images/final-image.png)
+
+## Congratulations!! You have just automated your routine tasks by implementing your first Ansible project!
