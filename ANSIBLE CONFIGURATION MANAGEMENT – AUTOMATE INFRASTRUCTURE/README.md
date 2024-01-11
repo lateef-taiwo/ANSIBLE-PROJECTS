@@ -132,7 +132,8 @@ Now, ssh into your Jenkins-Ansible server using ssh-agent
         <Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user'
 
         [db]
-        <Database-Private-IP-Address> ansible_ssh_user='ec2-user' 
+        <Database-Private-IP-Address> ansible_ssh_user='ec2-user'
+
 
         [lb]
         <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
@@ -142,3 +143,4 @@ It is time to start giving Ansible the instructions on what you needs to be perf
 In common.yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
 Update your playbooks/common.yml file with following code:
  
+ git changes
