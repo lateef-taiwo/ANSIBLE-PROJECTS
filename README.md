@@ -30,11 +30,17 @@ Each module within an Ansible Playbook performs a specific task. Each module con
 
 Ansible uses the YAML syntax. Depending on whom you ask, YAML stands for yet another markup language or YAML ain’t markup language (a recursive acronym). There are also 2 different, but perfectly acceptable, YAML file extensions: .yaml or .yml.
 
+There is a lot of information of writing playbooks in the official Ansible documentation
+[Ansible documentation](https://docs.ansible.com/ansible-core/2.14/playbook_guide/playbooks_privilege_escalation.html#risks-of-becoming-an-unprivileged-user#risks-of-becoming-an-unprivileged-user)
+
 There are 2 ways of using Ansible Playbooks: From the command line interface (CLI) or using the [Red Hat Ansible Automation Platform’s push-button deployments](https://www.redhat.com/en/technologies/management/ansible2).
 
 Reference: [Redhat documentation](https://www.redhat.com/en/topics/automation/what-is-an-ansible-playbook)
 
-Testing Jenkins CI for  Build Artifact
 Testing Jenkins CI
+
+Testing Jenkins CI for  Build Artifact
+
+Testing CICD pipeline for Build Artifact
 
 Testing CICD pipeline for Build Artifact
