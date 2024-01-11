@@ -10,6 +10,21 @@
         name: wireshark
         state: latest
 
+- name: Ensure python3-apt is installed
+  become: yes
+  package:
+    name: python3-apt
+    state: present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Ensure yum is installed
+  become: yes
+  package:
+    name: yum
+    state: present
+  when: ansible_distribution == 'RedHat'
+
+
 - name: update LB and DB server
   hosts: lb, db
   remote_user: ubuntu
