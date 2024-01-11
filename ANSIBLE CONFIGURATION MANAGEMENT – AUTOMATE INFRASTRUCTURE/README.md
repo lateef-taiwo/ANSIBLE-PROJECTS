@@ -141,8 +141,62 @@ Now, ssh into your Jenkins-Ansible server using ssh-agent
 ### Step 5 - CREATE A COMMON PLAYBOOK
 It is time to start giving Ansible the instructions on what you needs to be performed on all servers listed in inventory/dev.
 In common.yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
+
 Update your playbooks/common.yml file with following code:
  
- git changes
 
- build
+    ---
+    - name: update web and nfs servers
+    hosts: webservers, nfs
+    remote_user: ec2-user
+    become: yes
+    become_user: root
+    tasks:
+        - name: ensure wireshark is at the latest version
+        yum:
+            name: wireshark
+            state: latest
+
+    - name: update LB and DB server
+    hosts: lb, db
+    remote_user: ubuntu
+    become: yes
+    become_user: root
+    tasks:
+        - name: Update apt repo
+        apt: 
+            update_cache: yes
+
+        - name: ensure wireshark is at the latest version
+        apt:
+            name: wireshark
+            state: latest
+ 
+ Examine the code above and try to make sense out of it. This playbook is divided into two parts, each of them is intended to perform the same task: install wireshark utility (or make sure it is updated to the latest version) on your RHEL 8 and Ubuntu servers. It uses root user to perform this task and respective package manager: yum for RHEL 8 and apt for Ubuntu.
+
+Feel free to update this playbook with following tasks:
+
+    Create a directory and a file inside it
+    Change timezone on all servers
+    Run some shell script etc
+
+For a better understanding of Ansible playbooks – [watch this video](https://youtu.be/ZAdJ7CdN7DY) from [RedHat](https://youtu.be/ZAdJ7CdN7DY) and read this [article](https://www.redhat.com/en/topics/automation/what-is-an-ansible-playbook).
+
+
+### Step 6 – Update GIT with the latest code
+
+Now all of your directories and files live on your machine and you need to push changes made locally to GitHub. It is important to learn how to collaborate with help of GIT. In many organisations there is a development rule that do not allow to deploy any code before it has been reviewed by an extra pair of eyes – it is also called "Four eyes principle". Now you have a separate branch, you will need to know how to raise a Pull Request (PR), get your branch peer reviewed and merged to the master branch.
+
+Commit your code into GitHub: 16. use git commands to add, commit and push your branch to GitHub.
+
+`git status`
+
+`git add <selected files>`
+
+`git commit -m "commit message"`
+
+* 
+    Create a Pull request (PR)
+    
+* Head back on your terminal, checkout from the feature branch into the master, and pull down the latest changes.
+
