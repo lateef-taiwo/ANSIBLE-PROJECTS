@@ -5,10 +5,12 @@
   become: yes
   become_user: root
   tasks:
-    - name: Ensure all packages are up to date
+    - name: Ensure all packages are up to date (excluding 'docker-ce-stable' repo)
       yum:
         name: '*'
         state: latest
+        exclude: docker-ce-stable
+
     - name: ensure wireshark is at the latest version
       yum:
         name: wireshark
