@@ -6,9 +6,18 @@
   become_user: root
   tasks:
     - name: ensure wireshark is at the latest version
+      # Use 'yum' for Red Hat-based systems
       yum:
         name: wireshark
         state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: ensure wireshark is at the latest version
+      # Use 'apt' for Debian-based systems
+      apt:
+        name: wireshark
+        state: latest
+      when: ansible_os_family == "Debian"
 
 - name: update LB and DB server
   hosts: lb, db
@@ -17,7 +26,7 @@
   become_user: root
   tasks:
     - name: Update apt repo
-      apt: 
+      apt:
         update_cache: yes
 
     - name: ensure wireshark is at the latest version
