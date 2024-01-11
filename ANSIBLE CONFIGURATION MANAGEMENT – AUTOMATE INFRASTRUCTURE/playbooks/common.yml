@@ -25,6 +25,18 @@
         name: wireshark
         state: latest
 
+    - name: Update apt repo and cache
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
+    - name: Install node and npm
+      apt:
+        pkg:
+          - nodejs
+          - npm
+
+
     # - name: Install btop
     #   apt:
     #     name: btop
