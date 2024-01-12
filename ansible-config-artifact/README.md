@@ -24,7 +24,7 @@ Before we begin, let us make some changes to our Jenkins job – now every new c
 
 ![plugin](./images/copy-artifact-plugin.png)
 
-4. Create a new Freestyle projectand name it save_artifacts.
+4. Create a new Freestyle project and name it save_artifacts.
 
 5. This project will be triggered by completion of your existing ansible project. Configure it accordingly:
 
