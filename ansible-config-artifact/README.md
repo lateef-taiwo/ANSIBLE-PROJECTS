@@ -46,7 +46,7 @@ If both Jenkins jobs have completed one after another – you shall see your fil
 
 ### Step 2 – Refactor Ansible code by importing other playbooks into site.yml
 
-Before starting to refactor the codes, ensure that you have pulled down the latest code from master (main) branch, and created a new branch, name it refactor.
+Before starting to refactor the codes, ensure that you have pulled down the latest code from master (main) branch, and created a new branch, named it refactor.
 
 Let see code re-use in action by importing other playbooks.
 
