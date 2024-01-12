@@ -32,13 +32,15 @@ Before we begin, let us make some changes to our Jenkins job – now every new c
 
 Note: You can configure number of builds to keep in order to save space on the server, for example, you might want to keep only last 2 or 5 build results. You can also make this change to your ansible job.
 
+![artifact](./images/save-artifact-2.png)
 6. The main idea of save_artifacts project is to save artifacts into `/home/ubuntu/ansible-config-artifact` directory. To achieve this, create a Build step and choose Copy artifacts from other project, specify ansible as a source project and `/home/ubuntu/ansible-config-artifact` as a target directory.
 
-![build](./images/build-steps.png)
+![build](./images/copy-artifacts.png)
 
+![build](./images/copy-artifacts-2.png)
 7. Test your set up by making some change in README.MD file inside your ansible-config-mgt repository (right inside master branch).
 
-![build](./images/build-successful.png)
+![build](./images/build.png)
 
 If both Jenkins jobs have completed one after another – you shall see your files inside `/home/ubuntu/ansible-config-artifact` directory and it will be updated with every commit to your master branch. Now your Jenkins pipeline is more neat and clean.
 
@@ -46,11 +48,11 @@ If both Jenkins jobs have completed one after another – you shall see your fil
 
 ### Step 2 – Refactor Ansible code by importing other playbooks into site.yml
 
-Before starting to refactor the codes, ensure that you have pulled down the latest code from master (main) branch, and created a new branch, named it refactor.
+Before starting to refactor the codes, ensure that you have pulled down the latest code from master (main) branch, and created a new branch, name it refactor.
 
 Let see code re-use in action by importing other playbooks.
 
-1. Within playbooks folder, create a new file and name it site.yml – This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed. Including common.yml that you created previously. Dont worry, you will understand more what this means shortly.
+1. Within playbooks folder, create a new file and name it site.yml – This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed. Including common.yml that you created previously. Don't worry, you will understand more what this means shortly.
 
 2. Create a new folder in root of the repository and name it static-assignments. The static-assignments folder is where all other children playbooks will be stored. This is merely for easy organization of your work. It is not an Ansible specific concept, therefore you can choose how you want to organize your work. You will see why the folder name has a prefix of static very soon. For now, just follow along.
 
@@ -255,7 +257,9 @@ So, we should have this in site.yml
     - import_playbook: ../static-assignments/uat-webservers.yml
 
 
+
 Step 5 – Commit & Test
+
 
 Commit your changes, create a Pull Request and merge them to master branch, make sure webhook triggered two consequent Jenkins jobs, they ran successfully and copied all the files to your Jenkins-Ansible server into /home/ubuntu/ansible-config-artifact/ directory.
 
@@ -268,3 +272,18 @@ Now run the playbook against your uat inventory and see what happens:
 `cd ansible-config-artifact/`
 
  `sudo ansible-playbook -i inventory/uat.yml playbooks/site.yml`
+
+
+ If you get an error,
+
+
+ You could do it ALTERNATIVELY.
+
+ `cd ansible-config-artifact/` `mkdir ansible cd ansible sudo vi  host.ini`
+
+ Insert the code below;
+
+    [uat-webservers]
+    <Web1-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-pem-file>
+    <Web2-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-pem-file>   
+
