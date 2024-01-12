@@ -297,3 +297,12 @@ Now run the playbook against your uat inventory and see what happens:
     <Web1-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-pem-file>
     <Web2-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-pem-file>   
 
+  ![host](./images/cd-host-ini.png)
+
+  ![host](./images/host-ini.png)
+
+Ping the inventory host.ini `ansible uat-webservers -m ping -i ansible/host.ini` to see if its works.
+
+  ![ping](./images/works.png)
+
+Now run the playbook against your host.ini inventory and see what happens: `ansible-playbook -i ansible/host.ini playbooks/site.yml`
