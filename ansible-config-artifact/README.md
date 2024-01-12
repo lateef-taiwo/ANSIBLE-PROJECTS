@@ -114,13 +114,19 @@ The code above uses built in import_playbook Ansible module. Your folder structu
 
 `ansible-playbook -i inventory/dev.yml playbooks/site.yaml`
 
-![ansible](./images/ansible-playbook-i.png)
+![ansible](./images/ansible-playbook-successful.png)
 
 8. Make sure that wireshark is deleted on all the servers by running `wireshark --version`
 
 ![wireshark](./images/wireshark-deleted-1.png)
 
 ![wireshark](./images/wireshark-deleted-2.png)
+
+![wireshark](./images/wireshark-deleted-3.png)
+
+![wireshark](./images/wireshark-deleted-4.png)
+
+![wireshark](./images/wireshark-deleted-5.png)
 
 Now you have learned how to use import_playbooks module and you have a ready solution to install/delete packages on multiple servers with just one command.
 
@@ -129,14 +135,15 @@ We have our nice and clean dev environment, so let us put it aside and configure
 
 1. Launch 2 fresh EC2 instances using RHEL 8 image, we will use them as our uat servers, so give them names accordingly – Web1-UAT and Web2-UAT.
 
+  ![UAT](./images/web-UAT-servers.png)
+
 2. To create a role, you must create a directory called roles/, relative to the playbook file or in /etc/ansible/ directory.
 
 There are two ways how you can create this folder structure:
 
 * Use an Ansible utility called ansible-galaxy inside ansible-config-mgt/roles directory (you need to create roles directory upfront)
 
-    `mkdir roles cd roles ansible-galaxy init webserver`
-
+`mkdir roles && cd roles && ansible-galaxy init webserver`
 * Create the directory/files structure manually
 
 Note: You can choose either way, but since you store all your codes in GitHub, it is recommended to create folders and files there rather than locally on Jenkins-Ansible server.
@@ -191,9 +198,11 @@ NOTE: TO COPY YOUR KEYPAIR FROM YOUR LOCAL MACHINE INTO YOUR EC2 INSTANCE USE SC
 
 ![scp](./images/scp.png)
 
+![scp](./images/scp-confirm.png)
+
 4. In /etc/ansible/ansible.cfg file uncomment roles_path string and provide a full path to your roles directory roles_path = /home/ubuntu/ansible-config-mgt/roles, so Ansible could know where to find configured roles.
 
-![ansible](./images/etc-ansible-config.png)
+![ansible](./images/roles-path.png)
 
 5. It is time to start adding some logic to the webserver role. Go into tasks directory, and within the main.yml file, start writing configuration tasks to do the following:
 
@@ -243,9 +252,10 @@ NOTE: TO COPY YOUR KEYPAIR FROM YOUR LOCAL MACHINE INTO YOUR EC2 INSTANCE USE SC
 ### Step 4 – Reference ‘Webserver’ role
 1. Within the static-assignments folder, create a new assignment for uat-webservers uat-webservers.yml. This is where you will reference the role.
 
-    ---
-    - hosts: uat-webservers
-    roles:
+    
+---     ---
+        - hosts: uat-webservers
+        roles:
         - webserver
 
 Remember that the entry point to our ansible configuration is the site.yml file. Therefore, you need to refer your uat-webservers.yml role inside site.yml.
