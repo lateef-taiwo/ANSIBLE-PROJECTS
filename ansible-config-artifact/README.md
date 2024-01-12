@@ -256,6 +256,11 @@ So, we should have this in site.yml
     - hosts: uat-webservers
     - import_playbook: ../static-assignments/uat-webservers.yml
 
+
+
+Step 5 – Commit & Test
+
+
 Commit your changes, create a Pull Request and merge them to master branch, make sure webhook triggered two consequent Jenkins jobs, they ran successfully and copied all the files to your Jenkins-Ansible server into /home/ubuntu/ansible-config-artifact/ directory.
 
 ### Step 5 – Commit & Test
@@ -267,6 +272,7 @@ Now run the playbook against your uat inventory and see what happens:
 `cd ansible-config-artifact/`
 
  `sudo ansible-playbook -i inventory/uat.yml playbooks/site.yml`
+
 
  If you get an error,
 
@@ -280,3 +286,4 @@ Now run the playbook against your uat inventory and see what happens:
     [uat-webservers]
     <Web1-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-pem-file>
     <Web2-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-pem-file>   
+
