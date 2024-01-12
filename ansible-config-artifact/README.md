@@ -22,7 +22,7 @@ Before we begin, let us make some changes to our Jenkins job – now every new c
 
 3. Go to Jenkins web console -> Manage Jenkins -> Manage Plugins -> on Available tab search for Copy Artifact and install this plugin without restarting Jenkins
 
-![plugin](./images/copy-artifact-plugin.png)
+![plugin](./images/copy.png)
 
 4. Create a new Freestyle project and name it save_artifacts.
 
