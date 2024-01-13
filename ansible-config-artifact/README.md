@@ -306,3 +306,26 @@ Ping the inventory host.ini `ansible uat-webservers -m ping -i ansible/host.ini`
   ![ping](./images/works.png)
 
 Now run the playbook against your host.ini inventory and see what happens: `ansible-playbook -i ansible/host.ini playbooks/site.yml`
+
+![success](./images/successful-1.png)
+
+![success](./images/successful-2.png)
+
+You should be able to see both of your UAT Web servers configured and you can try to reach them from your browser:
+
+`http://<Web1-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
+
+or
+
+`http://<Web1-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php`
+
+![works](./images/working-1.png)
+
+![works](./images/working-2.png)
+
+Your Ansible architecture now looks like this:
+
+![final](./images/final-architecture.png)
+
+### Congratulations! You have learned how to deploy and configure UAT Web Servers using Ansible imports and roles!
+
