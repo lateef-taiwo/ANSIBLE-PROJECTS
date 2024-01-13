@@ -1,5 +1,4 @@
-# roles/webserver/tasks/main.yml
-
+---
 - name: install apache
   become: true
   ansible.builtin.yum:
@@ -15,22 +14,22 @@
 - name: clone a repo
   become: true
   ansible.builtin.git:
-    repo: "{{ webserver_repo_url }}"
-    dest: "{{ webserver_dest }}"
+    repo: https://github.com/lateef-taiwo/DevOpsToolingWebsite.git
+    dest: /var/www/html
     force: yes
 
 - name: copy html content to one level up
   become: true
-  command: cp -r "{{ webserver_src }}" /var/www/
+  command: cp -r /var/www/html/html/ /var/www/
 
 - name: Start service httpd, if not started
   become: true
   ansible.builtin.service:
-    name: "{{ webserver_service_name }}"
+    name: httpd
     state: started
 
 - name: recursively remove /var/www/html/html/ directory
   become: true
   ansible.builtin.file:
-    path: "{{ webserver_dest }}/html"
+    path: /var/www/html/html
     state: absent

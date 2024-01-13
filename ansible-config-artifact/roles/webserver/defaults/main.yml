@@ -1,6 +1,0 @@
-# roles/webserver/defaults/main.yml
-
-webserver_repo_url: https://github.com/lateef-taiwo/DevOpsToolingWebsite.git
-webserver_dest: /var/www/html
-webserver_src: /var/www/html/html/
-webserver_service_name: httpd
