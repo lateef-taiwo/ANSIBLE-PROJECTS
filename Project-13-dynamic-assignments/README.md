@@ -17,9 +17,6 @@ In the https://github.com/ansible-config-mgt GitHub repository start a new branc
 
 Your GitHub shall have following structure.
 
-Note: Depending on what method you used in the previous project you may have or not have roles folder in your GitHub repository – if you used ansible-galaxy, then roles directory was only created on your Jenkins-Ansible server locally. It is recommended to have all the codes managed and tracked in GitHub, so you might want to recreate this structure manually in this case – it is up to you.
-
-
     ├── dynamic-assignments
     │   └── env-vars.yml
     ├── inventory
@@ -33,6 +30,8 @@ Note: Depending on what method you used in the previous project you may have or 
         └──...(optional subfolders & files)
     └── static-assignments
         └── common.yml
+
+Note: Depending on what method you used in the previous project you may have or not have roles folder in your GitHub repository – if you used ansible-galaxy, then roles directory was only created on your Jenkins-Ansible server locally. It is recommended to have all the codes managed and tracked in GitHub, so you might want to recreate this structure manually in this case – it is up to you.
 
 
 ![first](../images/dynamic-assignments.png)
