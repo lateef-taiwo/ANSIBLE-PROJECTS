@@ -37,6 +37,9 @@ There are 2 ways of using Ansible Playbooks: From the command line interface (CL
 
 Reference: [Redhat documentation](https://www.redhat.com/en/topics/automation/what-is-an-ansible-playbook)
 
+### Ansible Tower
+  [Ansible Tower](https://docs.ansible.com/ansible-tower/latest/html/userguide/projects.html)
+
 Testing Jenkins CI
 
 Testing Jenkins CI for  Build Artifact
