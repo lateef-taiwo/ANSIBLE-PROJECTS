@@ -35,7 +35,7 @@ Note: Depending on what method you used in the previous project you may have or 
         └── common.yml
 
 
-![first](../images/dynamic-assignments.png)
+![first](../ansible-config-artifact/images/dynamic-assignments.png)
 
 Since we will be using the same Ansible to configure multiple environments, and each of these environments will have certain unique attributes, such as servername, ip-address etc., we will need a way to set values to variables per specific environment.
 For this reason, we will now create a folder to keep each environment’s variables file. Therefore, create a new folder env-vars, then for each environment, create new YAML files which we will use to set variables.
@@ -59,7 +59,7 @@ Your layout should now look like this.
         └── common.yml
         └── webservers.yml
 
-![env-vars](../images/env-vars.png)
+![env-vars](../ansible-config-artifact/images/env-vars.png)
 
 Now paste the instruction below into the `env-vars.yml` file.
 
@@ -81,7 +81,7 @@ Now paste the instruction below into the `env-vars.yml` file.
             - always
 
 
-![env-vars](../images/env-var-yml.png)
+![env-vars](../ansible-config-artifact/images/env-var-yml.png)
 
 ### Notice 3 things to notice here:
 
@@ -134,7 +134,7 @@ On Jenkins-Ansible server make sure that git is installed with git --version, th
     git branch roles-feature
     git switch roles-feature
 
-![geerlinkgguy](../images/geerlingguy-mysql.png)
+![geerlinkgguy](../ansible-config-artifact/images/geerlingguy-mysql.png)
 
 Inside roles directory create your new MySQL role with `ansible-galaxy install -p . geerlingguy.mysql` and rename the folder to mysql using `mv geerlingguy.mysql/ mysql`
 
@@ -152,9 +152,9 @@ We want to be able to choose which Load Balancer to use, Nginx or Apache, so we 
 1. Nginx
 2. Apache
 
-![geer](../images/geer.png)
+![geer](../ansible-config-artifact/images/geer.png)
 
-![geer](../images/geer-2.png)
+![geer](../ansible-config-artifact/images/geer-2.png)
 
 With your experience on Ansible so far you can:
 Decide if you want to develop your own roles, or find available ones from the community
@@ -164,12 +164,12 @@ Update both static-assignment and site.yml files to refer the roles
 * Since you cannot use both Nginx and Apache load balancer, you need to add a condition to enable either one – this is where you can make use of variables.
 * Declare a variable in `defaults/main.yml` file inside the Nginx and Apache roles. Name each variables `enable_nginx_lb` and `enable_apache_lb` respectively.
 
-![apache](../images/apache.png)
+![apache](../ansible-config-artifact/images/apache.png)
 
 * Set both values to false like this enable_nginx_lb: false and enable_apache_lb: false.
 * Declare another variable in both roles load_balancer_is_required and set its value to false as well.
 
-![nginx](../images/nginx.png)
+![nginx](../ansible-config-artifact/images/nginx.png)
 
 * Update both assignment and site.yml files respectively.
 
