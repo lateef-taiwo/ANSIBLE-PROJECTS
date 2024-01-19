@@ -192,3 +192,15 @@ You will activate load balancer, and enable nginx by setting these in the respec
 
     enable_nginx_lb: true
     load_balancer_is_required: true
+
+`ansible-playbook -i inventory/uat.yml playbooks/site.yml`
+
+![success](../ansible-config-artifact/images/success.png)
+
+The same must work with apache LB, so you can switch it by setting respective environmental variable to true and other to false.
+
+To test this, you can update inventory for each environment and run Ansible against each environment.
+
+### Congratulations!!!!
+
+You have learned and practiced how to use Ansible configuration management tool to prepare UAT environment for Tooling web solution.
